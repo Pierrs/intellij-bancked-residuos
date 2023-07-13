@@ -22,7 +22,7 @@ public class Categoria {
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Tarea> tareas = new LinkedHashSet<>();
-
+//tudu
     public Long getCategoriaId() {
         return categoriaId;
     }
