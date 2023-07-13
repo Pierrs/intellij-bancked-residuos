@@ -48,3 +48,4 @@ public class Rol {
         this.usuarioRoles = usuarioRoles;
     }
 }
+

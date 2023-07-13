@@ -1,6 +1,7 @@
 package com.sistema.residuos.controladores;
-
 import com.sistema.residuos.configuraciones.JwtUtils;
+import com.sistema.residuos.exceptiones.UsuarioFoundException;
+import com.sistema.residuos.exceptiones.UsuarioNotFoundException;
 import com.sistema.residuos.modelo.JwtRequest;
 import com.sistema.residuos.modelo.JwtResponse;
 import com.sistema.residuos.modelo.Usuario;
@@ -33,7 +34,7 @@ public class AuthenticationController {
     public ResponseEntity<?> generarToken(@RequestBody JwtRequest jwtRequest) throws Exception {
         try{
             autenticar(jwtRequest.getUsername(),jwtRequest.getPassword());
-        }catch (Exception exception){
+        }catch (UsuarioNotFoundException exception){
             exception.printStackTrace();
             throw new Exception("Usuario no encontrado");
         }
@@ -58,5 +59,6 @@ public class AuthenticationController {
         return (Usuario) this.userDetailsService.loadUserByUsername(principal.getName());
     }
 }
+
 
 

@@ -1,6 +1,7 @@
 package com.sistema.residuos.servicios.impl;
 
 
+import com.sistema.residuos.exceptiones.UsuarioFoundException;
 import com.sistema.residuos.modelo.Usuario;
 import com.sistema.residuos.modelo.UsuarioRol;
 import com.sistema.residuos.repositorios.RolRepository;
@@ -25,7 +26,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuarioLocal = usuarioRepository.findByUsername(usuario.getUsername());
         if(usuarioLocal != null){
             System.out.println("El usuario ya existe");
-            throw new Exception("El usuario ya esta presente");
+            throw new UsuarioFoundException("El usuario ya esta presente");
         }
         else{
             for(UsuarioRol usuarioRol:usuarioRoles){
@@ -46,7 +47,5 @@ public class UsuarioServiceImpl implements UsuarioService {
     public void eliminarUsuario(Long usuarioId) {
         usuarioRepository.deleteById(usuarioId);
     }
-
-
 
 }
